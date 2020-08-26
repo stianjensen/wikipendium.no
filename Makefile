@@ -31,7 +31,7 @@ test:
 
 .PHONY: setup
 setup:
-	virtualenv venv
+	virtualenv venv --python=python2.7
 	cp wikipendium/settings/local.py.example wikipendium/settings/local.py
 
 .PHONY: shell
