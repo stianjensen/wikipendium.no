@@ -58,10 +58,12 @@
 
     {% if mathjax %}
     <script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
     MathJax.Hub.Config({
       TeX: {
         extensions: ['AMSmath.js', 'AMSsymbols.js']
       },
+      extensions: ['[Contrib]/counters/counters.js'],
       tex2jax: {
         inlineMath: [['$','$'], ['\\(','\\)']],
         displayMath: [['$$','$$'], ['\\[','\\]']],
