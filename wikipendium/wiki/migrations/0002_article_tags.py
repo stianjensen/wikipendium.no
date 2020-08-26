@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('taggit', '0001_initial'),
-        ('wiki', '0001_initial'),
+        ('wikipendium__wiki', '0001_initial'),
     ]
 
     operations = [
