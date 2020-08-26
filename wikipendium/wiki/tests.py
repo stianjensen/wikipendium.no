@@ -2,6 +2,7 @@
 
 from django.test import TestCase
 from wikipendium.wiki.models import Article, ArticleContent, User
+from wikipendium.wiki.forms import NewArticleForm
 from django.core.exceptions import ValidationError
 import datetime
 
@@ -184,10 +185,13 @@ class ArticleContentTest(TestCase):
                           unicode(self.ac1))
 
     def test_line_endings(self):
-        ac = ArticleContent.objects.create(
-            article=self.article1,
-            content=u'Test\r\nnext line.'
-        )
-        saved_ac = ArticleContent.objects.get(pk=ac.pk)
+        form = NewArticleForm({
+            'slug': u'lineendings',
+            'title': u'New article',
+            'lang': u'en',
+            'content': u'Test\r\nnext line.',
+        })
+        self.assertTrue(form.is_valid())
+        ac = form.save(commit=False)
         self.assertEquals(u'Test\nnext line.',
-                          saved_ac.content)
+                          ac.content)
